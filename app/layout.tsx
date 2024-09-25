@@ -1,10 +1,10 @@
+import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Footer } from "@/components/footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -40,7 +40,7 @@ export default function RootLayout({
         <Toaster />
         <div className="min-h-full flex flex-col border-x max-w-md mx-auto">
           <Header />
-          <main className="flex-1 px-4 py-2">{children}</main>  
+          <main className="flex-1 px-4 py-2">{children}</main>
           <Footer />
         </div>
       </body>

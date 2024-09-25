@@ -1,6 +1,8 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
-import { ShoppingBasket } from "lucide-react";
+import { useUserStore } from "@/lib/store/use-user-store";
+import { ShoppingBasket, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -16,7 +18,8 @@ export const Header = () => {
         />
         <p className="text-sm font-bold">Healthdonalds</p>
       </Link>
-      <div className=" ml-auto">
+      <div className=" ml-auto flex items-center gap-2">
+        <UserNameHeader />
         <Button
           size="sm"
           variant="outline"
@@ -29,5 +32,18 @@ export const Header = () => {
         </Button>
       </div>
     </header>
+  );
+};
+const UserNameHeader = () => {
+  const userName = useUserStore((s) => s.userName);
+  const logout = useUserStore((s) => s.logout);
+  if (!userName) {
+    return null;
+  }
+  return (
+    <button onClick={() => logout()} className="flex items-center gap-2">
+      <User size={12} />
+      <p className="text-sm font-bold">{userName}</p>
+    </button>
   );
 };
