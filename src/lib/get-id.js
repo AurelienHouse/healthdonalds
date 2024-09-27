@@ -5,6 +5,6 @@ export const getId = (name) => {
     .toLowerCase()
     .replace(/[^a-z0-9]/g, '')
     .slice(0, 10);
-  const randomId = nanoid();
-  return `${sanitized}${randomId}`;
+  const randomId = nanoid(6); // Augmenté à 6 caractères pour plus d'unicité
+  return `${sanitized}-${randomId}`;
 };

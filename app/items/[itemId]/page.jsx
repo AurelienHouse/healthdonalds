@@ -1,6 +1,6 @@
 "use client";
 import { ImageInput } from "@/components/features/images/image-input";
-import { Alert, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -19,9 +19,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CATEGORIES } from "@/lib/category-data";
+import { getId } from "@/lib/get-id";
+import { setItem } from "@/lib/items/set-item";
 import { useUserStore } from "@/lib/store/use-user-store";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { X } from "lucide-react";
+import { User } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -34,32 +36,22 @@ const formSchema = z.object({
   price: z.coerce.number().min(0).max(1000),
   image: z.any(),
 });
-export default function ItemPage() {
+export default function ItemIdPage() {
   const isAdmin = useUserStore((s) => s.isAdmin);
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      id: "",
-      name: "",
-      category: "",
-      price: 0,
+      id: "xx",
       image: null,
     },
   });
+  console.log(form.formState.errors);
   const router = useRouter();
-  if (!isAdmin) {
-    return (
-      <Alert>
-        <X size={12} />
-        <AlertTitle>You are not authorized to create items</AlertTitle>
-      </Alert>
-    );
-  }
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log({ values });
+
+  async function onSubmit(values) {
+    console.log(values);
     const id = getId(values.name);
+    alert(id);
     await setItem(id, {
       name: values.name,
       price: values.price * 100,
@@ -67,6 +59,16 @@ export default function ItemPage() {
       image: values.image,
     });
     router.push("/");
+  }
+
+  if (!isAdmin) {
+    return (
+      <Alert>
+        <User size={12} />
+        <AlertTitle>You are not authorized to view this page.</AlertTitle>
+        <AlertDescription>Only admin can.</AlertDescription>
+      </Alert>
+    );
   }
   return (
     <div className="">
@@ -111,7 +113,7 @@ export default function ItemPage() {
                             width={32}
                             height={32}
                           />
-                          {c.title}
+                          <span>{c.title}</span>
                         </div>
                       </SelectItem>
                     ))}
@@ -129,7 +131,7 @@ export default function ItemPage() {
               <FormItem>
                 <FormLabel>price</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="" {...field} />
+                  <Input type="number" placeholder="99.99" {...field} />
                 </FormControl>
 
                 <FormMessage />
@@ -150,7 +152,11 @@ export default function ItemPage() {
               </FormItem>
             )}
           />
-          <Button className="w-full" type="submit">
+          <Button
+            className="w-full"
+            disabled={form.formState.isSubmitting}
+            type="submit"
+          >
             Submit
           </Button>
         </form>
