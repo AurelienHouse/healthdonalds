@@ -7,11 +7,19 @@ export const setItem = async (id, item) => {
 		if (item.image instanceof File) {
 			const path = `images/${item.image.name}`;
 			const storageRef = ref(storage, path);
-			await uploadBytes(storageRef, item.image);
-			const downloadUrl = await getDownloadURL(storageRef);
+			try {
+				await uploadBytes(storageRef, item.image);
+				const downloadUrl = await getDownloadURL(storageRef);
 			item.image = downloadUrl;
 			item.imagePath = path;
-		}
+		} catch (error) {
+			console.error("Erreur lors de l'ajout de l'item:", error);
+			throw error;
+		}		
+	}
+
+
+
 		const file = doc(db, "items", id);
 		await setDoc(file, item);
 	

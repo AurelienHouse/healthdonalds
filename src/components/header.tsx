@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { useCartQuantity } from "@/lib/store/use-cart-store";
 import { useUserStore } from "@/lib/store/use-user-store";
 import { ShoppingBasket, User } from "lucide-react";
 import Image from "next/image";
@@ -20,20 +21,27 @@ export const Header = () => {
       </Link>
       <div className=" ml-auto flex items-center gap-2">
         <UserNameHeader />
-        <Button
-          size="sm"
-          variant="outline"
-          className="inline-flex items-center gap-2"
-        >
-          <ShoppingBasket size={16} />
-          <span className="rounded-full bg-red-500 px-1 py-0.5 text-xs text-white">
-            0
-          </span>
-        </Button>
+        <ShoppingCart />
       </div>
     </header>
   );
 };
+
+const ShoppingCart = () => {
+  const cartQuantity = useCartQuantity();
+  return (
+    <Button
+      size="sm"
+      variant="outline"
+      className="inline-flex items-center gap-2"
+    >
+      {cartQuantity}
+      <ShoppingBasket size={16} />
+      
+    </Button>
+  );
+};
+
 const UserNameHeader = () => {
   const userName = useUserStore((s) => s.userName);
   const logout = useUserStore((s) => s.logout);

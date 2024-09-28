@@ -40,12 +40,7 @@ export default function ItemIdPage() {
   const isAdmin = useUserStore((s) => s.isAdmin);
   const form = useForm({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      id: "xx",
-      image: null,
-    },
   });
-  console.log(form.formState.errors);
   const router = useRouter();
 
   async function onSubmit(values) {
