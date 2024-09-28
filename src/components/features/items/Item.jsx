@@ -6,6 +6,8 @@ import { Button } from "../../../components/ui/button";
 import { formatPrice } from "../../../lib/format-price";
 import { useCartStore } from "../../../lib/store/use-cart-store";
 import { cn } from "../../../lib/utils";
+
+
 export const Item = ({ item }) => {
   return (
     <div className={cn("relative rounded-md border p-3 shadow-inner")}>

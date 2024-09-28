@@ -1,22 +1,24 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 
-const q = query(collection(db, "items"), where("capital", "==", true));
 
-const querySnapshot = await getDocs(q);
-querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-  console.log(doc.id, " => ", doc.data());
-});
-export const getItems = async () => {
-    const itemsCollections = collection(db, "items");
-    const itemsResult = await getDocs(itemsCollections);
-    const data = [];
-    itemsResult.forEach((item) => {
-        data.push({
-            id: item.id,
-            ...item.data(),
-        });
+export const getItems = async (category) => {
+
+let request = collection(db, "items");
+
+if(category){
+    request = query(request, where("category", "==", category));
+}
+
+    const itemsResult = await getDocs(request);
+    const items = [];
+    itemsResult.forEach((i) => {
+        const item = {
+        
+            id: i.id,
+            ...i.data(),
+        };
+        items.push(item);
     });
-    return data;
+    return items;
 }
