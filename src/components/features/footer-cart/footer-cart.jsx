@@ -5,9 +5,9 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { formatPrice } from "@/lib/format-price";
 import { useCartPrice } from "@/lib/store/use-cart-store";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import { ItemsCart } from "../cart/items-cart";
-import Link from "next/link";
 
 export const FooterCart = () => {
   const [open, setOpen] = useState(false);
@@ -24,11 +24,11 @@ export const FooterCart = () => {
       >
         {open ? <ChevronDown size={12} /> : <ChevronUp size={12} />}
       </Button>
-      {open ? <ItemsCart /> : null}
+      {open ? <ItemsCart className="max-h-32" /> : null}
       <div className="flex items-center gap-2">
         <Link
           href="/checkout"
-          className={buttonVariants({ size: "sm", className: "w-full"  })}
+          className={buttonVariants({ size: "sm", className: "w-full" })}
         >
           Checkout
         </Link>
