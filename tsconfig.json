@@ -21,6 +21,13 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/items/[itemId]/page.jsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/items/[itemId]/page.jsx",
+    "src/components/ui/BurgerLogo.jsx"
+, "src/components/header.tsx"  ],
   "exclude": ["node_modules"]
 }

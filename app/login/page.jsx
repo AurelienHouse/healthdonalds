@@ -43,7 +43,7 @@ export default function LoginPage() {
           height={50}
         />
       </div>
-      <h1 className="text-2xl font-bold">Welcome to HealthDonalds</h1>
+      <h1 className="text-2xl font-bold">Welcome to Veggie House !</h1>
       <p className="text-sm">Please login to your account to continue</p>
       <form
         action={(formData) => {
