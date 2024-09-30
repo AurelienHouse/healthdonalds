@@ -1,3 +1,4 @@
+import { AdminActions } from "@/components/features/admin/admin-actions";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Toaster } from "@/components/ui/sonner";
@@ -38,6 +39,7 @@ export default function RootLayout({
         )}
       >
         <Toaster />
+        <AdminActions />
         <div className="m-auto flex h-screen max-w-md flex-col border-x">
           <Header />
           <main className="max-h-[calc(100%_-_100px)] flex-1 p-4">
