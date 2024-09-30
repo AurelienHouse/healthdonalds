@@ -19,7 +19,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "HealthDonalds",
+  title: "Veggie House Mobile",
   description: "Eat healthy, stay healthy",
 };
 
