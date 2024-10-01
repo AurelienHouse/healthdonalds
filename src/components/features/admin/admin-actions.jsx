@@ -7,7 +7,7 @@ import Link from "next/link";
 export const AdminActions = () => {
   const adminStore = useAdminStore();
   return (
-    <div className="fixed bottom-4 left-4 flex items-center gap-2 rounded-md border p-2">
+    <div className="fixed bottom-20  flex items-center gap-2 rounded-md border p-2">
       <Link href="/items/new">New</Link>
       <Toggle
         pressed={adminStore.adminEnabled}
