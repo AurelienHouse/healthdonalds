@@ -13,7 +13,7 @@ export default function LoginPage() {
     <div className="relative flex h-full flex-col items-center justify-center gap-4 py-4">
       <div className="absolute left-2 top-2 rotate-12">
         <Image
-          src="/categories/burger.png  "
+          src="/Logo-burger-house-green.png"
           alt="Burger"
           width={50}
           height={50}
@@ -21,7 +21,7 @@ export default function LoginPage() {
       </div>
       <div className="absolute right-2 top-2 rotate-6">
         <Image
-          src="/categories/dessert.png  "
+          src="/Logo-burger-house-green.png"
           alt="dessert"
           width={50}
           height={50}
@@ -29,7 +29,7 @@ export default function LoginPage() {
       </div>
       <div className="absolute bottom-2 right-2 -rotate-12">
         <Image
-          src="/categories/fries.png  "
+          src="/Logo-burger-house-green.png"
           alt="fries"
           width={50}
           height={50}
@@ -37,7 +37,7 @@ export default function LoginPage() {
       </div>
       <div className="absolute bottom-2 left-2 -rotate-6">
         <Image
-          src="/categories/nuggets.png  "
+          src="/Logo-burger-house-green.png"
           alt="nuggets"
           width={50}
           height={50}
